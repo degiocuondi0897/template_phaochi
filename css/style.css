@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&amp;subset=vietnamese');
+.slickModal * {
+    font-family: 'Quicksand', Helvetica, Arial, Lucida, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.wrap.popup-cokhach-finish {
+    display: none;
+}
+
+.slickWindow .title {
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.slickWindow .wrap.popup-cokhach-open {
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: #fff;
+    text-align: left;
+    padding: 30px;
+    display: inline-block;
+    float: left;
+}
+
+.slickWindow .wrap.popup-cokhach-open:after {
+    transform: rotateZ(-90deg);
+    border-color: #fff transparent transparent transparent;
+    bottom: auto;
+    top: 222px;
+    left: auto;
+    right: -24px;
+}
+
+.slickWindow .wrap.popup-cokhach-open .title {
+    color: #d66161;
+    padding-bottom: 22px;
+}
+
+.slickWindow .wrap.popup-cokhach-open p {
+    font-size: 14px;
+    padding-bottom: 22px;
+    text-align: left;
+    color: #222;
+}
+
+.slickWindow .wrap.popup-cokhach-open form input.field {
+    background: #eee;
+    padding: 10px;
+    display: block;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid #eee;
+}
+
+.slickWindow .wrap.popup-cokhach-open input.send {
+    background: #d66161;
+    color: #fff;
+    font-weight: 800;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px 12px;
+    width: 100%;
+    margin-top: 10px;
+    display: block;
+    cursor: pointer;
+}
+
+.slickWindow .wrap.popup-cokhach-open input.send:hover {
+    background: #222;
+}
+
+.slickWindow .wrap.popup-cokhach-open .deny {
+    display: block;
+    font-size: 9px;
+    padding-top: 14px;
+    color: #000;
+    font-weight: 200;
+}
+
+.slickWindow .cta.rightbox {
+    right: 0;
+    height: 100%;
+    bottom: auto;
+    top: 0;
+    width: 40%;
+    left: auto;
+    background: #222;
+    display: inline-block;
+    position: relative;
+    background: url(../images/alo-ngay.jpg) center right no-repeat;
+}
+
+.slickWindow .cta.popup-cokhach-open span.icon {
+    width: 80px;
+    height: 80px;
+    background: url("../img/demos/email.png") 0 0 no-repeat;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.slickWindow .cta.popup-cokhach-open p {
+    position: absolute;
+    bottom: 62px;
+    font-size: 10px;
+    color: #fff;
+    left: 70px;
+    text-align: center;
+}
+
+.slickWindow .cta.popup-cokhach-open p span {
+    display: block;
+    font-weight: 800;
+    color: #fff;
+}
+
+.slickWindow .wrap.popup-cokhach-finish {
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: #fff;
+    text-align: center;
+    padding: 30px;
+    float: left;
+}
+
+.slickWindow .wrap.popup-cokhach-finish:after {
+    transform: rotateZ(-90deg);
+    border-color: #fff transparent transparent transparent;
+    bottom: auto;
+    top: 222px;
+    left: auto;
+    right: -24px;
+}
+
+.slickWindow .wrap.popup-cokhach-finish .title {
+    color: #d66161;
+    padding-bottom: 22px;
+    margin-top: 10%;
+}
+
+.slickWindow .wrap.popup-cokhach-finish p {
+    font-size: 18px;
+    padding-bottom: 22px;
+    text-align: center;
+    color: #222;
+}
+
+.cokhach-title {
+    width: auto;
+}
+
+.cokhach-description {
+    width: auto;
+}
+
+.slickWindow .close.icon:before,
+.slickWindow .close.icon:after {
+    background: #fff;
+}
+
+@media screen and (max-width: 560px) {
+    .slickWindow {
+        width: 100% !important;
+    }
+    .slickWindow .wrap {
+        width: 100% !important;
+        height: auto !important;
+        float: none;
+    }
+    .slickWindow .cta {
+        display: none !important;
+    }
+    .close:before,
+    .close:after {
+        background: #000 !important;
+    }
+}

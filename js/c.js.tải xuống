@@ -1,0 +1,279 @@
+var autoDetectInfoInterval = null;
+function loadJquery() {
+    var checker = document.getElementById("ckJquery");
+    if (checker) {} else {
+        var a = document.createElement("script");
+        a.src = "//c.cokhach.com/jquery-3.3.1.min.js";
+        a.type = "text/javascript";
+        a.id = "ckJquery";
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(a);
+    }
+    autoDetectInfoInterval = setInterval(autoDetectInfo, 2000);
+}
+function SyncCookie(){
+	var checker = document.getElementById("trazkCookie");
+	if (checker === null) {
+		var iframe = document.createElement('iframe');
+		var src = '//c.cokhach.com/cookies.php';
+		iframe.style.display = "none";
+		iframe.src = src;
+		iframe.id = "trazkCookie";
+		document.body.appendChild(iframe);
+	}
+}
+window.onerror = function(){
+   return true;
+}
+function cokhachdefer(method) {	
+    if (window.jQuery) {
+      method();
+    } else {
+        loadJquery();
+        setTimeout(function() { cokhachdefer(method) }, 50);
+    }
+}
+cokhachdefer(function() {
+    autoDetectInfo();
+    loadCokhachPlugin();
+});
+
+
+function loadIframe() {
+    var checker = document.getElementById("coKhachIframe");
+    if (checker) {} else {
+        n = encodeURIComponent(document.location.href);
+        var weblink = document.getElementById("clientID");
+        t = encodeURIComponent(document.title);
+        if (weblink) {
+            clientID = weblink.getAttribute("req");
+            topd = getTopDomain();
+            n = encodeURIComponent(weblink.getAttribute("orilink"));
+        } else {
+            clientID = '';
+            topd = "";
+        }
+        var iframe = document.createElement('iframe');
+        u = {};
+        var p = btoa("title=" + t + "&href=" + n + "&topd=" + topd + "&clientID=" + clientID);
+
+        var src = '//c.cokhach.com/cokhach.php?k=' + p;
+        iframe.style.display = "none";
+        iframe.src = src;
+        iframe.id = "coKhachIframe";
+        document.body.appendChild(iframe);
+    }
+}
+
+if (!document.body) {
+	window.addEventListener("load", loadIframe);
+} else {
+	loadIframe();
+}
+
+
+var eee = ppp = nnn = ttt = '';
+
+
+
+
+function loadCokhachPlugin() {
+    var checker = document.getElementById("ckWidgets");
+    if (checker) {} else {
+        var a = document.createElement("script");
+        a.src = "//w.cokhach.com/widgets.js?hostname=" + window.location.hostname;
+        a.type = "text/javascript";
+        a.id = "ckWidgets";
+        a.setAttribute('hostname', window.location.hostname);
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(a);
+    }
+}
+
+function autoDetectInfo() {
+    jQuery(function($) {
+        $('form').each(function(i, o) {
+            var f = $(o);
+            var v = [];
+            var d = 0;
+            var x = "";
+
+            f.find('input').each(function(i, o) {
+                clearInterval(autoDetectInfoInterval);
+                i = $(o);
+                i.change(function() {
+                    v.map(function(i) {
+                        return {
+                            id: i.attr('id'),
+                            name: i.attr('name'),
+                            val: i.val()
+                        }
+                    });
+                    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(i.val())) {
+                        eee = i.val();
+                        ttt = 'CAPTURE'
+                    }
+                    if (/email|mail/.test(i.attr('id'))) {
+                        eee = i.val();
+                        ttt = 'CAPTURE'
+                    }
+                    if (/email|mail/.test(i.attr('name'))) { eee = i.val(); }
+                    if (/phone|dienthoai/.test(i.attr('id'))) {
+                        ppp = i.val();
+                        ttt = 'CAPTURE'
+                    }
+                    if (/phone|dienthoai/.test(i.attr('name'))) {
+                        ppp = i.val();
+                        ttt = 'CAPTURE'
+                    }
+                    if (/name|ten|hoten/.test(i.attr('id'))) {
+                        nnn = i.val();
+                        ttt = 'CAPTURE'
+                    }
+                    if (/name|ten|hoten/.test(i.attr('name'))) {
+                        nnn = i.val();
+                        ttt = 'CAPTURE'
+                    }
+                    if (/cokhachTelephone|Telephone/.test(i.attr('id'))) {
+                        ppp = i.val();
+                        ttt = 'MANUAL';
+                    }
+
+                    if (eee != '' || ppp != '' || nnn != '') { updateInfoCokhach(nnn, eee, ppp, ttt); }
+
+                });
+            });
+        });
+        $("body").on("click", ".cokhach-submit", function() {
+
+            if (typeof(document.getElementById("cokhachNGDT")) != 'undefined' && document.getElementById("cokhachNGDT") != null && document.getElementById("cokhachNGDT").value != '') {
+                ppp = document.getElementById("cokhachNGDT").value;
+                ttt = 'NGDT';
+            };
+            if (typeof(document.getElementById("cokhachHSVG")) != 'undefined' && document.getElementById("cokhachHSVG") != null && document.getElementById("cokhachHSVG").value != '') {
+                ppp = document.getElementById("cokhachHSVG").value;
+                ttt = 'HSVG';
+            };
+            if (typeof(document.getElementById("cokhachHKTT")) != 'undefined' && document.getElementById("cokhachHKTT") != null && document.getElementById("cokhachHKTT").value != '') {
+                ppp = document.getElementById("cokhachHKTT").value;
+                ttt = 'HKTT';
+            };
+            if (ppp != '') updateInfoCokhach(nnn, eee, ppp, ttt);
+        })
+    })
+}
+
+function updateInfoCokhach(nnn, eee, ppp, ttt) {
+
+    var src = "//c.cokhach.com/uu.php?n=" + nnn + "&e=" + eee + "&p=" + ppp + "&t=" + ttt;
+    console.log("updateInfoCokhach");
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', src, true);
+    xhr.withCredentials = true;
+    xhr.send();
+
+}
+
+function getTopDomain() {
+    if (!window.location.origin) {
+        window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+    }
+
+    var urls = (window.location != window.parent.location) ? document.referrer : document.location;
+
+    if (window.top === window) {
+        urls = urls.origin;
+    }
+    return urls;
+}
+
+
+setTimeout(() => {
+    try {
+        if (typeof subiz !== "undefined") {
+            subiz('getUserAttributes', (attributes) => {
+                try {
+                    if (data && data.length) {
+                        data.forEach(_e => {
+                            switch (_e.key) {
+                                case "fullname":
+                                    nnn = _e.text;
+                                    break;
+                                case "phones":
+                                    ppp = _e.text;
+                                    break;
+                            }
+                        });
+                        ttt = "CAPTURE";
+                        if (eee || ppp || nnn) {
+                            updateInfoCokhach(nnn, eee, ppp, ttt);
+                        }
+                    }
+                } catch (error) {
+
+                }
+            });
+        }
+    } catch (error) {
+        
+    }
+}, 8000)
+
+setTimeout(() => {
+    try {
+        if (typeof Tawk_API !== "undefined") {
+            Tawk_API = Tawk_API || {};
+            Tawk_API.onPrechatSubmit = function (data) {
+                try {
+                    if (data && data.length) {
+                        data.forEach(_e => {
+                            switch (_e.label) {
+                                case "Tên":
+                                    nnn = _e.answer;
+                                    break;
+                                case "Email":
+                                    eee = _e.answer;
+                                    break;
+                                case "Điện thoại":
+                                    ppp = _e.answer;
+                                    break;
+                            }
+                        });
+                        ttt = "CAPTURE";
+                        if (eee || ppp || nnn) {
+                            updateInfoCokhach(nnn, eee, ppp, ttt);
+                        }
+                    }
+                } catch (error) {
+
+                }
+            };
+        }
+    } catch (error) {
+
+    }
+}, 5000)
+
+setTimeout(() => {
+    try {
+        var purechat_submit = $('#purechat-name-submit');
+        if (purechat_submit && purechat_submit.length > 0) {
+            $(purechat_submit).on("click", function () {
+                nnn = $('#purechat-firstname-input').val();
+                eee = $('#purechat-email-input').val();
+                ppp = $('#purechat-phonenumber-input').val();
+                ttt = "CAPTURE";
+                if (eee || nnn || ppp) {
+                    updateInfoCokhach(nnn, eee, ppp, ttt);
+                }
+            });
+        }
+    } catch (error) {
+
+    }
+}, 8000);
+
+setTimeout(() => {
+   try {SyncCookie();}catch (error) { }	
+}, 1000);
+
